@@ -9,7 +9,7 @@ lwConfigItem * lwconf_item_init(lwConfigItem *parent, char *name, char *val)
     item->val = lws_copy(val);
     item->alloc_size = LWCONF_ALLOC_SIZE;
     item->size = 0;
-    item->items = (lwConfigItem **) malloc(sizeof(lwConfigItem*) * item->alloc_size);
+    item->items = NULL;
     return item;
 }
 
@@ -63,6 +63,11 @@ int lwconf_set(lwConfigItem *lwnmspc, char *name, char *val)
 {
     if(lwnmspc == NULL) // Only global namespace
         return -1;
+
+    if(lwnmspc->items == NULL && lwnmspc->size == 0)
+    {
+        item->items = (lwConfigItem **) malloc(sizeof(lwConfigItem*) * item->alloc_size);
+    }
 
 
     lwConfigItem *item = lwconf_item_get(lwnmspc, name); // get Item Pointer
