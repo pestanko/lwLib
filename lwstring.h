@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
-#include "lwArray.h"
 
 
 char *lws_create(size_t len);

@@ -21,7 +21,7 @@ static const unsigned char d[] = {
     66,66,66,66,66,66
 };
 
-int base64encode(const void* data_buf, size_t dataLength, char* result, size_t resultSize)
+int lwbase64_encode(const void* data_buf, size_t dataLength, char* result, size_t resultSize)
 {
    const char base64chars[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
    const uint8_t *data = (const uint8_t *)data_buf;
@@ -97,12 +97,12 @@ int base64encode(const void* data_buf, size_t dataLength, char* result, size_t r
 }
 
 
-int base64decode (char *in, size_t inLen, unsigned char *out, size_t *outLen) {
+int lwbase64_decode (char *in, size_t inLen, unsigned char *out, size_t *outLen) {
     char *end = in + inLen;
     size_t buf = 1, len = 0;
 
     while (in < end) {
-        unsigned char c = d[*in++];
+        unsigned char c = d[ (unsigned char) *in++];
 
         switch (c) {
         case WHITESPACE: continue;   /* skip whitespace */

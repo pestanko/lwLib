@@ -5,16 +5,16 @@
 #include "config/iniparser.h"
 
 
-void test_base64(char *text)
+void test_base64(unsigned char *text)
 {
-    char encoded[255], decoded[255];
-    size_t text_size = strlen(text);
+    unsigned char encoded[255], decoded[255];
+    size_t text_size = strlen((char*) text);
 
 
-    base64encode(text, text_size, encoded, 255);
+    lwbase64_encode(text, text_size, (char*) encoded, 255);
 
-    size_t enc_size = strlen(encoded);
-    base64decode(encoded, enc_size, decoded, &text_size);
+    size_t enc_size = strlen((char *) encoded);
+    lwbase64_decode((char *) encoded, enc_size, decoded, &text_size);
 
     printf("Base64: %s\nDecoded: %s\n", encoded, decoded);
 
@@ -66,7 +66,7 @@ void enc_test()
     printf("Original text: %s\nEncryptedText: %s\n", text, result);
     printf("Decrypted text: %s\n ", decoded);
 
-    test_base64(text);
+    test_base64((unsigned char*) text);
 }
 
 

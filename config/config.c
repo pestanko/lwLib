@@ -106,6 +106,7 @@ int lwconf_setg(lwConfig *lwc, char *name, char *val)
     // TODO
     if(name == NULL || val == NULL) return 0;
     lwConfigItem *item = lwc->globalNamespace;
+    if(item == NULL) return 0;
     return 0;
 }
 
@@ -167,7 +168,7 @@ lwConfigItem * lwconf_item_find(lwConfigItem *lwc, char *name)
 
 void lwconf_print_subtree(lwConfigItem *lwc)
 {
-    if(lwc == NULL) return NULL;
+    if(lwc == NULL) return;
 
     char *path = lwconf_get_path(lwc);
     if(lwc->val != NULL)
@@ -185,7 +186,6 @@ char * lwconf_get_path(lwConfigItem *lwc)
 {
     if(lwc == NULL)
         return NULL;
-    lwConfigItem *item = lwc;
     char *res = lwconf_get_path(lwc->prev);
 
     size_t len = 0;
