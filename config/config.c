@@ -66,7 +66,7 @@ int lwconf_set(lwConfigItem *lwnmspc, char *name, char *val)
 
     if(lwnmspc->items == NULL && lwnmspc->size == 0)
     {
-        item->items = (lwConfigItem **) malloc(sizeof(lwConfigItem*) * item->alloc_size);
+        lwnmspc->items = (lwConfigItem **) malloc(sizeof(lwConfigItem*) * lwnmspc->alloc_size);
     }
 
 
