@@ -42,8 +42,7 @@ void test_ini_parser()
 {
     lwConfig lwc;
     lwconf_init(&lwc);
-    int res = lwpars_ini_load("test.ini", &lwc);
-    printf("Return code: %d", res);
+    lwpars_ini_load("test.ini", &lwc);
     lwconf_print_subtree(lwc.globalNamespace);
     lwconf_destroy(&lwc);
 }

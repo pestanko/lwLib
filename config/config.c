@@ -41,12 +41,14 @@ int lwconf_item_destroy(lwConfigItem *item)
 {
     if(item == NULL)
         return -1;
+    //printf("Destroy: %s - %s\n", item->name, item->val);
     free(item->name);
     free(item->val);
 
     for(size_t i =0;  i < item->size; i++)
     {
-        lwconf_item_destroy(item->items[i]);
+       lwconf_item_destroy(item->items[i]);
+       free(item->items[i]);
     }
 
     free(item->items);
