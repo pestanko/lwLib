@@ -143,6 +143,7 @@ char *lws_getline(FILE *in)
 
 char *lws_trim(char *str)
 {
+
     while(isspace(*str)){ str++;}
     char *end = str + (strlen(str) - 1);
     while(isspace(*end)) { end--;}
@@ -153,13 +154,15 @@ char *lws_trim(char *str)
 
 char *lws_strip(char *str)
 {
+
     str = lws_trim(str);
+    char *orig = str;
     int b = str[0];
     char * e = (str + (strlen(str) -1));
     if(b == '\"' || b == '\'') str++;
     if(*e == '\'' || *e == '\"')  *e = '\0';
     char *res = lws_copy(str);
-    free(str);
+    free(orig);
     return res;
 }
 

@@ -60,8 +60,6 @@ int lwpars_ini_load(char *fpath, lwConfig *lwc)
         }
 
         *chr = '\0';
-        char *name = lws_trim(line);
-        char *val = lws_strip(++chr);
         lwconf_set(curr_namespace, name, val);
 
         printf("%s : %s\n", name, val);
