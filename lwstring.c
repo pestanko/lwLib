@@ -164,6 +164,7 @@ char *lws_strip(char *str)
     char *res = lws_copy(str);
     free(orig);
     return res;
+
 }
 
 
