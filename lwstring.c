@@ -12,7 +12,8 @@ char *lws_copy(char *str)
    if(str == NULL)
        return NULL;
 
-   char *mem = (char*) malloc(sizeof(char));
+   int len = strlen(str) + 1;
+   char *mem = (char*) malloc(sizeof(char) * len);
    if(!mem)
         return NULL;
 
